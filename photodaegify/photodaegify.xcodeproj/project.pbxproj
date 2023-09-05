@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C995B8212AA56C7E001DA328 /* SemanticImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C995B8202AA56C7E001DA328 /* SemanticImage.swift */; };
+		C995B8232AA56C9F001DA328 /* segmentation.mlmodelc in Resources */ = {isa = PBXBuildFile; fileRef = C995B8222AA56C9F001DA328 /* segmentation.mlmodelc */; };
+		C995B8272AA65ECE001DA328 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C995B8262AA65ECE001DA328 /* PhotoView.swift */; };
+		C9E506B22AA5401900656AEB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E506B12AA5401900656AEB /* opencv2.framework */; };
+		C9E506B42AA5405D00656AEB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E506B32AA5405D00656AEB /* Accelerate.framework */; };
+		C9E506B62AA5407000656AEB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E506B52AA5407000656AEB /* CoreMedia.framework */; };
+		C9E506BC2AA540EA00656AEB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E506BB2AA540EA00656AEB /* CoreFoundation.framework */; };
+		C9E506BD2AA541A200656AEB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E506B72AA540C200656AEB /* CoreGraphics.framework */; };
+		C9E506C42AA5474D00656AEB /* Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9E506C32AA5474D00656AEB /* Wrapper.mm */; };
 		C9F057392AA23D1F00336B4E /* photodaegifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F057382AA23D1F00336B4E /* photodaegifyApp.swift */; };
 		C9F0573B2AA23D1F00336B4E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0573A2AA23D1F00336B4E /* ContentView.swift */; };
 		C9F0573D2AA23D2200336B4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F0573C2AA23D2200336B4E /* Assets.xcassets */; };
@@ -35,6 +44,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C995B8202AA56C7E001DA328 /* SemanticImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SemanticImage.swift; path = "../../../../../Downloads/SemanticImage-main 2/Sources/SemanticImage/SemanticImage.swift"; sourceTree = "<group>"; };
+		C995B8222AA56C9F001DA328 /* segmentation.mlmodelc */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = segmentation.mlmodelc; sourceTree = "<group>"; };
+		C995B8262AA65ECE001DA328 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		C9E506B12AA5401900656AEB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		C9E506B32AA5405D00656AEB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.4.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		C9E506B52AA5407000656AEB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.4.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
+		C9E506B72AA540C200656AEB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		C9E506B92AA540C800656AEB /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.4.sdk/System/Library/Frameworks/CoreImage.framework; sourceTree = DEVELOPER_DIR; };
+		C9E506BB2AA540EA00656AEB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.4.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		C9E506BE2AA541F400656AEB /* photodaegify-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "photodaegify-Bridging-Header.h"; sourceTree = "<group>"; };
+		C9E506C12AA542C300656AEB /* Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wrapper.h; sourceTree = "<group>"; };
+		C9E506C22AA545B600656AEB /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C9E506C32AA5474D00656AEB /* Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Wrapper.mm; sourceTree = "<group>"; };
 		C9F057352AA23D1F00336B4E /* photodaegify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photodaegify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F057382AA23D1F00336B4E /* photodaegifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photodaegifyApp.swift; sourceTree = "<group>"; };
 		C9F0573A2AA23D1F00336B4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +77,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E506BD2AA541A200656AEB /* CoreGraphics.framework in Frameworks */,
+				C9E506BC2AA540EA00656AEB /* CoreFoundation.framework in Frameworks */,
+				C9E506B62AA5407000656AEB /* CoreMedia.framework in Frameworks */,
+				C9E506B42AA5405D00656AEB /* Accelerate.framework in Frameworks */,
+				C9E506B22AA5401900656AEB /* opencv2.framework in Frameworks */,
 				C9F057652AA24FB700336B4E /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,11 +106,16 @@
 		C9F0572C2AA23D1F00336B4E = {
 			isa = PBXGroup;
 			children = (
+				C9E506C32AA5474D00656AEB /* Wrapper.mm */,
+				C9E506C22AA545B600656AEB /* PrefixHeader.pch */,
+				C9E506C12AA542C300656AEB /* Wrapper.h */,
+				C9E506B12AA5401900656AEB /* opencv2.framework */,
 				C9F057372AA23D1F00336B4E /* photodaegify */,
 				C9F057492AA23D2300336B4E /* photodaegifyTests */,
 				C9F057532AA23D2300336B4E /* photodaegifyUITests */,
 				C9F057362AA23D1F00336B4E /* Products */,
 				C9F057632AA24FB700336B4E /* Frameworks */,
+				C9E506BE2AA541F400656AEB /* photodaegify-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,12 +132,15 @@
 		C9F057372AA23D1F00336B4E /* photodaegify */ = {
 			isa = PBXGroup;
 			children = (
+				C995B8222AA56C9F001DA328 /* segmentation.mlmodelc */,
+				C995B8202AA56C7E001DA328 /* SemanticImage.swift */,
 				C9F057662AA2595F00336B4E /* Info.plist */,
 				C9F057382AA23D1F00336B4E /* photodaegifyApp.swift */,
 				C9F0573A2AA23D1F00336B4E /* ContentView.swift */,
 				C9F0573C2AA23D2200336B4E /* Assets.xcassets */,
 				C9F0573E2AA23D2200336B4E /* photodaegify.entitlements */,
 				C9F0573F2AA23D2200336B4E /* Preview Content */,
+				C995B8262AA65ECE001DA328 /* PhotoView.swift */,
 			);
 			path = photodaegify;
 			sourceTree = "<group>";
@@ -138,6 +173,11 @@
 		C9F057632AA24FB700336B4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9E506BB2AA540EA00656AEB /* CoreFoundation.framework */,
+				C9E506B92AA540C800656AEB /* CoreImage.framework */,
+				C9E506B72AA540C200656AEB /* CoreGraphics.framework */,
+				C9E506B52AA5407000656AEB /* CoreMedia.framework */,
+				C9E506B32AA5405D00656AEB /* Accelerate.framework */,
 				C9F057642AA24FB700336B4E /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -159,6 +199,8 @@
 			dependencies = (
 			);
 			name = photodaegify;
+			packageProductDependencies = (
+			);
 			productName = photodaegify;
 			productReference = C9F057352AA23D1F00336B4E /* photodaegify.app */;
 			productType = "com.apple.product-type.application";
@@ -211,6 +253,7 @@
 				TargetAttributes = {
 					C9F057342AA23D1F00336B4E = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 					C9F057452AA23D2300336B4E = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -231,6 +274,8 @@
 				Base,
 			);
 			mainGroup = C9F0572C2AA23D1F00336B4E;
+			packageReferences = (
+			);
 			productRefGroup = C9F057362AA23D1F00336B4E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -248,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F057412AA23D2200336B4E /* Preview Assets.xcassets in Resources */,
+				C995B8232AA56C9F001DA328 /* segmentation.mlmodelc in Resources */,
 				C9F0573D2AA23D2200336B4E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,7 +320,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F0573B2AA23D1F00336B4E /* ContentView.swift in Sources */,
+				C995B8212AA56C7E001DA328 /* SemanticImage.swift in Sources */,
+				C995B8272AA65ECE001DA328 /* PhotoView.swift in Sources */,
 				C9F057392AA23D1F00336B4E /* photodaegifyApp.swift in Sources */,
+				C9E506C42AA5474D00656AEB /* Wrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +396,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${SRCROOT}/**",
+					"${inherited}",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -361,6 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -405,6 +459,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${SRCROOT}/**",
+					"${inherited}",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -413,6 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -425,6 +484,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_ENTITLEMENTS = photodaegify/photodaegify.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -432,6 +494,12 @@
 				DEVELOPMENT_TEAM = 577P5HKSHP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/**",
+				);
+				GCC_PREFIX_HEADER = "${SRCROOT}/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = photodaegify/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "using camera to take the photo and use it to modify it";
@@ -458,6 +526,8 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "photodaegify-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -468,6 +538,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_ENTITLEMENTS = photodaegify/photodaegify.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -475,6 +548,12 @@
 				DEVELOPMENT_TEAM = 577P5HKSHP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/**",
+				);
+				GCC_PREFIX_HEADER = "${SRCROOT}/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = photodaegify/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "using camera to take the photo and use it to modify it";
@@ -501,6 +580,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "photodaegify-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

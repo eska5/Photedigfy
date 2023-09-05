@@ -1,28 +1,37 @@
 import SwiftUI
+import UIKit
+import Foundation
+import Vision
+import AVKit
 
 struct ContentView: View {
+    
+    @State private var placeholder = 0
     @State private var selectedOption = 1
-    @State private var resultImage: Image?
-    @State private var image1: Image?
-    @State private var image2: Image?
+    @State private var isPresented = false
+    @State private var resultImage: UIImage?
+    @State private var image1: UIImage?
+    @State private var image2: UIImage?
     @State private var isResult = false
     @State private var isImagePickerPresented = false
     @State private var isCameraSource = false
-    // Carousel
-    @State private var selectedOptionSingle = 0 // Track the selected option index
-    @State private var selectedOptionDouble = 0 // Track the selected option index
+    @State private var semanticImage = SemanticImage()
+    @State private var selectedOptionSingle = 0
+    @State private var selectedOptionDouble = 0
     @State private var scrollViewOffset: CGFloat = 0
     
-    let optionsSingle = ["Odszumanie", "zaszumienie tła", "usuwanie pierwszego planu"]
-    let optionsDouble = ["modyfikacja kolorów", "przeklejenie pierwszego planu"]
-    
+    let optionsSingle = ["Znajdź osobę","Znajdź obiekt","zaszumienie tła", "Odszumanie"]
+    let optionsDouble = ["przeklejenie pierwszego planu(obiekt)", "przeklejenie pierwszego planu(osoba)" ]
     var body: some View {
-        
         NavigationView {
             ZStack {
-                Rectangle() // Add a Rectangle as a background with the desired color
-                    .fill(Color(UIColor(rgb: 0x242429))) // Set the background color
+                Rectangle()
+                    .fill(Color(UIColor(rgb: 0x242429)))
                     .ignoresSafeArea()
+                if isPresented == true {
+                    FullScreenImageView(resultImage: $resultImage, isResult: $isPresented)
+                    .zIndex(1)
+                }
                 VStack {
                     Picker("Liczba zdjęć", selection: $selectedOption) {
                         Text("1 zdjęcie").tag(1)
@@ -34,14 +43,14 @@ struct ContentView: View {
                     .padding()
                     
                     if selectedOption == 1 {
-                        ImageSelector(image: $image1)
+                        ImageSelector(uiImage: $image1)
                     } else if selectedOption == 2 {
                         HStack {
-                            ImageSelector(image: $image1)
-                            ImageSelector(image: $image2)
+                            ImageSelector(uiImage: $image1)
+                            ImageSelector(uiImage: $image2)
                         }
                     }
-                                        
+                                
                     HStack {
                         Button(action: {
                             isCameraSource = true
@@ -49,7 +58,7 @@ struct ContentView: View {
                         }) {
                             Text("Zrób Zdjęcie")
                         }
-                        .buttonStyle(CustomButtonStyle()) // Apply custom button style
+                        .buttonStyle(CustomButtonStyle())
                         
                         Button(action: {
                             isCameraSource = false
@@ -57,7 +66,7 @@ struct ContentView: View {
                         }) {
                             Text("Wybierz Zdjęcie")
                         }
-                        .buttonStyle(CustomButtonStyle()) // Apply custom button style
+                        .buttonStyle(CustomButtonStyle())
                     }
                                         
                     VStack {
@@ -83,7 +92,7 @@ struct ContentView: View {
                                 }
                             }
                                                         
-                            Text("\(optionsSingle[selectedOptionSingle])")
+                            Text("")
                                 .font(.headline)
                                 .padding(.top, 15)
 
@@ -105,25 +114,45 @@ struct ContentView: View {
                                     }
                                 }
                             }
-                            Text("\(optionsDouble[selectedOptionDouble])")
+                            Text("")
                                 .font(.headline)
                                 .padding(.top, 15)
                         }
                     }
                     .padding(.horizontal, 15)
-                       
                     HStack {
                         Button(action: {
+                            print(selectedOption)
+                            print(selectedOptionDouble)
+                            if selectedOption == 1 && selectedOptionSingle == 0 {
+                                resultImage = semanticImage.personMaskImage(uiImage: image1!)
+                            } else if selectedOption == 1 && selectedOptionSingle == 1 {
+                                resultImage = semanticImage.saliencyMask(uiImage: image1!);
+                            } else if selectedOption == 1 && selectedOptionSingle == 2 {
+                                resultImage = semanticImage.personBlur(uiImage:image1!, intensity:50.0);
+                            } else if selectedOption == 1 && selectedOptionSingle == 3 {
+                                resultImage = denoiseImage(image:image1!, blurRadius: 5.0)
+                            } else if selectedOption == 2 && selectedOptionDouble == 0 {
+                                resultImage = semanticImage.saliencyBlend(objectUIImage: image1!, backgroundUIImage: image2!);
+                            } else if selectedOption == 2 && selectedOptionDouble == 1 {
+                                resultImage = semanticImage.swapBackgroundOfPerson(personUIImage: image1!, backgroundUIImage: image2!)
+                            }
                             isResult = true
                         }) {
-                            Text("Rozpocznij Operację")
+                            Text("Włącz")
                         }
                         .foregroundColor(Color(UIColor(rgb: 0xD6D681)))
                         .buttonStyle(CustomButtonStyle())
                         
                         
                         if resultImage != nil {
-                            resultImage?
+                            Button(action: {
+                                    isPresented = true
+                                }) {
+                                    Text("Podgląd")
+                                }
+                                .buttonStyle(CustomButtonStyle())
+                            Image(uiImage: resultImage!)
                                 .resizable()
                                 .frame(width: 160, height: 160)
                         }
@@ -134,7 +163,6 @@ struct ContentView: View {
                     HStack {
                         ZStack(alignment: .bottomLeading) {
                             Button(action: {
-                                // Clear selected photos
                                 isResult = false
                                 resultImage = nil
                                 image1 = nil
@@ -142,8 +170,8 @@ struct ContentView: View {
                             }) {
                                 Text("Reset")
                             }
-                            .position(x:75, y:UIScreen.main.bounds.height - 730)
-                            .buttonStyle(CustomButtonStyle()) // Apply custom button style
+                            .position(x:75, y:UIScreen.main.bounds.height - 780)
+                            .buttonStyle(CustomButtonStyle())
                         }
                     }
                 }
@@ -166,23 +194,22 @@ struct ContentView: View {
     }
     
     struct ImageSelector: View {
-        @Binding var image: Image?
+        @Binding var uiImage: UIImage?
         
         var body: some View {
             VStack {
                 Button(action: {
-                    // Implement code to allow the user to select an image
-                    // and set the 'image' binding to the selected image.
+
                 }) {
-                    if let image = image {
-                        image
+                    if let image = uiImage {
+                        Image(uiImage: image)
                             .resizable()
                             .frame(width: 160, height: 160)
                     } else {
-                        Image(systemName: "photo.fill") // You can use any system symbol here
+                        Image(systemName: "photo.fill")
                             .resizable()
                             .frame(width: 160, height: 160)
-                            .foregroundColor(Color(UIColor(rgb: 0xE5E9E1))) // Customize
+                            .foregroundColor(Color(UIColor(rgb: 0xE5E9E1)))
                     }
                 }
             }
@@ -204,7 +231,7 @@ struct ScrollViewProxyValue {
 
 
 struct ImagePickerView: View {
-    @Binding var image1: Image?
+    @Binding var image1: UIImage?
     var isCameraSource: Bool
     
     var body: some View {
@@ -219,24 +246,29 @@ struct ImagePickerView: View {
 }
 
 struct CameraView: View {
-    @Binding var image: Image?
+    @Binding var image: UIImage?
     
     var body: some View {
-        ImagePicker(isCameraSource: true, image: $image)
+        ImagePicker(isCameraSource: true, uiImage: $image)
     }
 }
 
 struct PhotoLibraryView: View {
-    @Binding var image: Image?
+    @Binding var image: UIImage?
     
     var body: some View {
-        ImagePicker(isCameraSource: false, image: $image)
+        ImagePicker(isCameraSource: false, uiImage: $image)
     }
 }
 
 struct ImagePicker: UIViewControllerRepresentable {
     var isCameraSource: Bool
-    @Binding var image: Image?
+    @Binding var uiImage: UIImage?
+    
+    init(isCameraSource: Bool, uiImage: Binding<UIImage?>) {
+        self.isCameraSource = isCameraSource
+        self._uiImage = uiImage
+    }
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
@@ -261,7 +293,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let uiImage = info[.editedImage] as? UIImage {
-                parent.image = Image(uiImage: uiImage)
+                parent.uiImage = uiImage
             }
             picker.dismiss(animated: true)
         }
@@ -272,7 +304,6 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
-// button Style
 struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -299,4 +330,41 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+}
+
+extension UIImage {
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(cgImage: (image?.cgImage)!)
+    }
+}
+
+public func convert(image: Image, callback: @escaping ((UIImage?) -> Void)) {
+    DispatchQueue.main.async {
+        let renderer = ImageRenderer(content: image)
+        callback(renderer.uiImage)
+    }
+}
+
+
+public func denoiseImage(image: UIImage, blurRadius: CGFloat) -> UIImage? {
+    guard let cgImage = image.cgImage else { return nil }
+    
+    let inputImage = CIImage(cgImage: cgImage)
+    
+    let filter = CIFilter(name: "CIGaussianBlur")
+    filter?.setValue(inputImage, forKey: kCIInputImageKey)
+    filter?.setValue(blurRadius, forKey: kCIInputRadiusKey)
+    
+    if let outputImage = filter?.outputImage {
+        let context = CIContext()
+        if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
+            return UIImage(cgImage: cgImage)
+        }
+    }
+    
+    return nil
 }
